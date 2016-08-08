@@ -13,14 +13,25 @@ for index, feature in enumerate(feature_cols):
 # box plot of rentals, grouped by season
 bikes.boxplot(column='total', by='season')
 
+Feature explore:
 For continuous features:
-modeling:
+???
 # Here you can add or remove features into "feature_cols"
 X = bikes[feature_cols]
 y = bikes.total
 linreg = LinearRegression()
 linreg.fit(X, y)
 zip(feature_cols, linreg.coef_)
+
+For categorical features:
+Ordered categories: transform them to sensible numeric values (example: small=1, medium=2, large=3)
+Unordered categories: use dummy encoding (0/1)
+
+# Dummy variables:
+season_dummies = pd.get_dummies(bikes.season, prefix='season')
+season_dummies.sample(n=5, random_state=1)
+# In general, if you have a categorical feature with k possible values, you create k-1 dummy variables.
+
 
 Feature selection:
 from sklearn.cross_validation import train_test_split
@@ -37,18 +48,15 @@ def train_test_rmse(feature_cols):
 print train_test_rmse(['temp', 'season', 'weather', 'humidity'])
 print train_test_rmse(['temp', 'season', 'weather'])
 print train_test_rmse(['temp', 'season', 'humidity'])
+* RMSE: The lower the better
 
 
-For categorical features:
-Ordered categories: transform them to sensible numeric values (example: small=1, medium=2, large=3)
-Unordered categories: use dummy encoding (0/1)
 
-# Dummy variables:
-season_dummies = pd.get_dummies(bikes.season, prefix='season')
-season_dummies.sample(n=5, random_state=1)
-# In general, if you have a categorical feature with k possible values, you create k-1 dummy variables.
+Modeling:
+-fit
+-predict
+-evaluate using RMSE
+-evaluate using Adjusted R-square
 
-?dummy coding for categorical of regression
-?how to evaluate RMSE score
 
 
