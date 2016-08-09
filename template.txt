@@ -11,6 +11,9 @@ from pandas.io.json import json_normalize
 records_frame = json_normalize(records)
 
 2. check if null
+
+2.5 remove outliers
+
 3. For linear regression:
 visualize:
 <using seabirn>
@@ -25,6 +28,8 @@ for index, feature in enumerate(feature_cols):
 bikes.boxplot(column='total', by='season')
 
 Feature explore:
+* Check if any highly correlated input variables
+
 For continuous features:
 ???
 # Here you can add or remove features into "feature_cols"
@@ -74,4 +79,5 @@ Modeling:
 -evaluate using RMSE
 -evaluate using Adjusted R-square
 
-?linearR for classification
+?go through solution for linearR homework:
+https://github.com/fzr72725/DAT8/blob/master/notebooks/10_yelp_votes_homework.ipynb
