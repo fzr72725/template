@@ -11,14 +11,22 @@ from pandas.io.json import json_normalize
 records_frame = json_normalize(records)
 
 2. check if null
+data.isnull().values.any()
+data.isnull().sum() # to see how many NaN values
 
 2.5 remove outliers
 
 3. For linear regression:
 visualize:
+import seaborn as sns
+import matplotlib.pyplot as plt
+%matplotlib inline
 <using seabirn>
 feature_cols = ['temp', 'season', 'weather', 'humidity']
 seaborn.pairplot(bikes, x_vars=feature_cols, y_vars='total', kind='reg')
+or, for single variable plotting:
+sns.lmplot(x='al', y='ri', data=glass, ci=None)
+
 <using pandas>
 fig, axs = plt.subplots(1, len(feature_cols), sharey=True)
 for index, feature in enumerate(feature_cols):
@@ -26,6 +34,12 @@ for index, feature in enumerate(feature_cols):
 <for non-linear relationship>
 # box plot of rentals, grouped by season
 bikes.boxplot(column='total', by='season')
+
+<using matplotlib>
+plt.scatter(glass.al, glass.ri)
+plt.xlabel('al')
+plt.ylabel('ri')
+
 
 Feature explore:
 * Check if any highly correlated input variables
@@ -79,5 +93,6 @@ Modeling:
 -evaluate using RMSE
 -evaluate using Adjusted R-square
 
-?go through solution for linearR homework:
-https://github.com/fzr72725/DAT8/blob/master/notebooks/10_yelp_votes_homework.ipynb
+?what is heat map in seaborn?
+?confusion matrix
+?fill null values
