@@ -90,8 +90,17 @@ print np.sqrt(metrics.mean_squared_error(y_test, y_null))
 Modeling:
 -fit
 -predict
--evaluate using RMSE
+-evaluate using RMSE(for linearR)
 -evaluate using Adjusted R-square
+-evaluate using confusion matrix(for classification):
+pd.crosstab(y_test, knn.predict(X_test), rownames=["Actual"], colnames=["Predicted"])
+or
+confusion=  metrics.confusion_matrix(y_test, y_pred_class)
+TP = confusion[1][1]
+TN = confusion[0][0]
+FP = confusion[0][1]
+FN = confusion[1][0]
+
 
 ?what is heat map in seaborn?
 ?confusion matrix
